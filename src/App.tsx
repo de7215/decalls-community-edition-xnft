@@ -6,48 +6,49 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useFonts, Inter_900Black } from "@expo-google-fonts/dev";
 
-import { ExamplesScreens } from "./screens/ExamplesScreen";
-import { HomeScreen } from "./screens/HomeScreen";
-import { TokenListNavigator } from "./screens/TokenNavigator";
+import { WebViewWrapper } from "./screens/WebViewWrapper";
 
 const Tab = createBottomTabNavigator();
+
+const DeCallsScreen = () => <WebViewWrapper uri="https://test.decalls.io" />;
+const RewardsScreen = () => <WebViewWrapper uri="https://test.decalls.io/rewards" />;
+const RankScreen = () => <WebViewWrapper uri="https://test.decalls.io/leaderboard" />;
 
 function TabNavigator() {
   return (
     <Tab.Navigator
-      initialRouteName="Home"
-      screenOptions={{
-        tabBarActiveTintColor: "#e91e63",
-      }}
+      initialRouteName="DeCalls"
     >
       <Tab.Screen
-        name="Home"
-        component={HomeScreen}
-        options={{
-          tabBarLabel: "Home",
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="account" color={color} size={size} />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="List"
-        component={TokenListNavigator}
+        name="DeCalls"
+        component={DeCallsScreen}
         options={{
           headerShown: false,
-          tabBarLabel: "Tokens",
+          tabBarLabel: "DeCalls",
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="bank" color={color} size={size} />
+            <MaterialCommunityIcons name="gamepad" color={color} size={size} />
           ),
         }}
       />
       <Tab.Screen
-        name="Examples"
-        component={ExamplesScreens}
+        name="Rewards"
+        component={RewardsScreen}
         options={{
-          tabBarLabel: "Examples",
+          headerShown: false,
+          tabBarLabel: "Rewards",
           tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="home" color={color} size={size} />
+            <MaterialCommunityIcons name="cash-refund" color={color} size={size} />
+          ),
+        }}
+      />
+      <Tab.Screen
+        name="Rank"
+        component={RankScreen}
+        options={{
+          headerShown: false,
+          tabBarLabel: "Rank",
+          tabBarIcon: ({ color, size }) => (
+            <MaterialCommunityIcons name="skateboarding" color={color} size={size} />
           ),
         }}
       />
